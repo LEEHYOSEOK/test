@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>PC 접속 Index</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(function(){
+            var txt = "";
+            txt += "<p>브라우저 코드네임 : " + navigator.appCodeName + "</p>";
+            txt += "<p>브라우저 이름 : " + navigator.appName + "</p>";
+            txt += "<p>브라우저 버전 : " + navigator.appVersion + "</p>";
+            txt += "<p>쿠키 사용여부 : " + navigator.cookieEnabled + "</p>";
+            txt += "<p>브라우저 언어 : " + navigator.language + "</p>";
+            txt += "<p>온라인 연결 여부 : " + navigator.onLine + "</p>";
+            txt += "<p>사용 플랫폼 : " + navigator.platform + "</p>";
+            txt += "<p>User-agent 헤더 정보 : " + navigator.userAgent + "</p>";
+
+            document.getElementById("bcheck").innerHTML = txt;
+        });
+    </script>
+</head>
+<body>
+    <h2>데스크탑 모드(PC)로 접속!</h2>
+
+    <fieldset>
+        <legend>접속정보</legend>
+        <div id="bcheck"></div>
+    </fieldset>
+</body>
+</html>

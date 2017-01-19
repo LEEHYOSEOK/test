@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>Document</title>
+
+	<!-- jquery 1.11.2 cdn -->
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+
+var resultData = [	{	"location_seq":43,
+						"location_name":"베데스다병원",
+						"location_type":"SITE",
+						"location_code":"BTSD",
+						"user_id":"admin",
+						"user_nm":"관리자",
+						"subject_cnt":1	},
+					{	"location_seq":43,
+						"location_name":"베데스다병원",
+						"location_type":"SITE",
+						"location_code":"BTSD",
+						"user_id":"audit01",
+						"user_nm":"Auditor",
+						"subject_cnt":1	},
+					{"location_seq":44,"location_name":"Audit","location_type":"SPONSOR","location_code":"AU","user_id":"leehs","user_nm":"이효석","subject_cnt":0},
+					{	"location_seq":50,
+						"location_name":"V2?",
+						"location_type":"SITE",
+						"location_code":"V2",
+						"user_id":"audit03",
+						"user_nm":"Auditor",
+						"subject_cnt":1	},
+					{	"location_seq":50,
+						"location_name":"V2?",
+						"location_type":"SITE",
+						"location_code":"V2",
+						"user_id":"test01",
+						"user_nm":"사용자01",
+						"subject_cnt":1	}	];
+
+var procList = [];
+
+var beforeKey = ""; // 빈값
+
+var tmpArr = [];
+for	(var i = 0 ; i < resultData.length ; i++){ // 0에서 1씩 증가하지만 총 5개를 넘으면 안됨
+	var cData = resultData[i]; // cData는 resultData의 값이다.
+	var cKey = cData.location_seq; // cKey는 cData로 들어온 location_seq(기관번호) 값이다. (43, 43, 44, 50, 50)
+
+	if (beforeKey != cData.location_seq) // beforeKey와 cData의 location_seq(기관번호) 값이 같지 않으면 참 (43, 44, 50)
+	{ 
+		if(beforeKey){
+			procList[procList.length - 1]._userList = tmpArr;
+			tmpArr = [];
+		}
+		procList.push(cData); // procList의 배열의 끝에 currData를 넣어준다. (43, 44, 50)
+	}
+
+	tmpArr.push({
+		"user_id":cData.user_id,
+		"user_nm":cData.user_nm
+	});
+
+	beforeKey = cKey; // beforeKey는 cKey 값이다.
+}
+procList[procList.length - 1]._userList = tmpArr;
+tmpArr = [];
+
+
+var strHtml = "";
+
+for	(var i = 0 ; i < procList.length ; i++){
+	var cData = procList[i];
+	
+	strHtml += "<tr>";	
+	strHtml += "	<td>" + cData.location_name + "</td>";	
+
+
+	strHtml += "<td>";	
+	for (var j = 0 ; j < cData._userList.length ; j++){
+		var cUserData = cData._userList[j];
+		
+	}
+	strHtml += "</td>";	
+
+}
+
+console.log("원본:", resultData);
+console.log("가공:", procList);
+
+</script>
+</html>
+

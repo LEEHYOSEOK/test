@@ -1,0 +1,13 @@
+<script type="text/javascript">
+
+    var filter = "win16|win32|win64|mac";
+
+    if(navigator.platform){
+        if(0 > filter.indexOf(navigator.platform.toLowerCase())){
+            alert("Mobile");
+        }else{
+            alert("PC");
+        }
+    }
+
+</script>
